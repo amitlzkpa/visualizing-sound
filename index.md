@@ -8,7 +8,9 @@ Made and tested with:
 - Chrome (v99)
 - Codesandbox
 
+
 - [Slides](https://docs.google.com/presentation/d/1F489zUUDHKNvvu9FfY1fBu3GUHhWSUQ948Q0jZ6EnQE/edit?usp=sharing)
 - [Demo](https://fl1bvi.csb.app/)  
 - [Checkpoints](/checkpoints.md)  
 - [Snippets](/snippets.md)
+- [Workshop Repo](https://github.com/amitlzkpa/visualizing-sound)
