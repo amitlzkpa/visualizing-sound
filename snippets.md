@@ -95,7 +95,58 @@ scene.add(particleSystem);
 
 ```
 
-### Update particles
+### Visualize single frequency
+```
+function average(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += parseInt(arr[i], 10);
+  }
+  return sum / arr.length;
+}
+
+let prevArr;
+
+let avgPeriod = 20;
+let origin = new THREE.Vector3();
+
+let frequency = 0;
+let waveLength;
+let amplitude = 0;
+
+let sampleDistance;
+let waveSampleDistance;
+
+let p;
+let c;
+
+function updateParticles() {
+  if (!audioContext) return;
+  if (!prevArr) {
+    prevArr = Array(avgPeriod).fill(0);
+  }
+
+  prevArr.shift();
+  prevArr.push(lowFreqArray[0]); // lows
+
+  frequency = average(prevArr) / 20;
+
+  waveLength = size / frequency;
+
+  for (let i = 0; i < particleCount; i++) {
+    p = particleSystem.geometry.vertices[i];
+    sampleDistance = p.distanceTo(origin);
+    waveSampleDistance = sampleDistance % waveLength;
+    amplitude = Math.sin((waveSampleDistance / waveLength) * Math.PI * 2);
+
+    c = amplitude;
+    particleSystem.geometry.colors[i] = new THREE.Color(c * R, c * G, c * B);
+  }
+  particleSystem.geometry.colorsNeedUpdate = true;
+}
+```
+
+### Visualize multiple frequency
 ```
 
 
